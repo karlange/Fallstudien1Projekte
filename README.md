@@ -1,5 +1,5 @@
 # Fallstudien 1 Projekte
-Hier könne wir Links zu Resourcen und allgemein nützliche Referenzen sammeln.
+Hier können wir Links und allgemein nützliche Referenzen sammeln.
 
 # Resourcen
 Information zu Markdown: https://en.wikipedia.org/wiki/Markdown  
