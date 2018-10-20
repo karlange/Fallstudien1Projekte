@@ -2,8 +2,7 @@
 Hier können wir Links und allgemein nützliche Referenzen sammeln.
 
 # Ressourcen
-Information zu Markdown: https://en.wikipedia.org/wiki/Markdown  
-(Scrollt runter zu Beispielen.)
+Information zu Markdown: https://github.github.com/gfm/  
 
 LaTex Equations Online Editor: https://www.codecogs.com/latex/eqneditor.php?lang=en-en  
 
