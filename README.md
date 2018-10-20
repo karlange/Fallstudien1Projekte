@@ -1,7 +1,7 @@
 # Fallstudien 1 Projekte
 Hier können wir Links und allgemein nützliche Referenzen sammeln.
 
-# Resourcen
+# Ressourcen
 Information zu Markdown: https://en.wikipedia.org/wiki/Markdown  
 (Scrollt runter zu Beispielen.)
 
