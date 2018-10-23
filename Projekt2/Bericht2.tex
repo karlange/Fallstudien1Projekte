@@ -1,0 +1,334 @@
+\documentclass[a4paper,12pt]{article}
+% Standard-Dokument mit
+% Papierformat A4
+% Schrift 12-Punkt
+\usepackage{tabularx} % Paket f�r Tabellen
+\usepackage[left=3.5cm,right=2.5cm,top=2cm,bottom=2cm]{geometry} % Seiteneinrichtung
+\usepackage{textcomp,latexsym} % zusaetzliche Symbole
+\usepackage{color} % f�r farbige schrift
+\usepackage[ansinew]{inputenc} %universelle Zeichensatzkodierung Win/MAC
+\usepackage[ngerman]{babel} % neue deutsche Rechtschreibung
+\usepackage{graphicx}  %Zum Einf�gen von Grafiken
+\usepackage{amsmath, amssymb} % F�r mathematische Formeln
+\usepackage{multirow}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{adjustbox,lipsum}
+\setlength{\parindent}{0mm} %Zeilen einr�cken nach einem absatz wird unterdr�ckt
+\setlength{\parskip}{1ex plus0.5ex minus0.2ex} % Absatzabstand etwas groesser
+\setlength{\itemsep}{0ex plus0.2ex} % Abstand zweier Listenelemente kleiner
+\renewcommand{\baselinestretch}{1.5}\normalsize % Zeilenabstand 1.5
+\renewcommand{\theequation}{\arabic{equation}}
+\frenchspacing
+
+%-------------------------------------------------------------------------%
+% Dokumentbeginn
+\begin{document}
+\setlength{\parindent}{0em}  %verhindert Einrücken nach \\+Leerzeile
+
+%-------------------------------------------------------------------------%
+% Titelblatt und Inhaltsverzeichnis
+
+\begin{titlepage}
+
+\title{
+\vspace*{3cm}
+\begin{Huge}TITEL\end{Huge}\\
+\begin{Large}Fallstudien I (WS 2018/19)\end{Large}\\
+\begin{large}bei Prof. Dr. Carsten Jentsch\end{large}\\
+\vspace*{10cm}}
+
+\author{
+\begin{large}Ortrud Wartlick\end{large}\\
+\begin{large}Gruppe 7\end{large}\\
+\begin{large}mit Kai-Robin Lange, Layla Nyrabia und Jannik Rubertus\end{large}}
+
+\date{
+\vspace*{1cm}
+\today}
+
+\end{titlepage}
+\maketitle
+\thispagestyle{empty}
+
+\newpage
+\pagestyle{empty}
+\pagenumbering{roman}
+\tableofcontents 
+\newpage
+\pagestyle{plain}
+\pagenumbering{arabic}
+
+
+%-------------------------------------------------------------------------%
+% Hier beginnt der Text
+
+\section{Einleitung}
+\begin{itemize}
+\item Motivation, kurze Beschreibung von Inhalt und Ziel des Projekts
+\item Kurze Erläuterung der Vorgehensweise zur Problemlösung
+\item Evtl. kurze Darstellung der zentralen Ergebnisse
+\item Überblick über die einzelnen Kapitel
+\end{itemize}
+
+\section{Problemstellung}
+
+\begin{itemize}
+\item Beschreibung des Datenmaterials
+\begin{itemize}
+\item Hintergrund und Art der Datenerhebung (geplanter Versuch, Beobachtungsstu- die, Fragebogen usw.)
+\item Art und Umfang der Stichprobe (Vollerhebung, Schichtung usw.)
+\item Beschreibung aller Variablen (inhaltliche Bedeutung, Einheiten usw.)
+\item Diskussion der Datenqualität (fehlende Werte, Messgenauigkeit usw.)
+\end{itemize}
+\item Beschreibung der Ziele des Projekts (inhaltliche und statistische Zielsetzung)
+\end{itemize}
+
+
+\section{Statistische Methoden}
+\begin{itemize}
+\item Beschreibung der verwendeten statistischen Verfahren, Modelle usw. und welche
+Eigenschaften diese besitzen (hier sind auch mathematische Formeln nötig)
+\item Angabe der verwendeten Hilfsmittel (Software, statistische Tafeln usw.)
+\item Diskussion der zugrunde liegenden Annahmen, Rechtfertigung der Annahmen bzw.
+Darstellung, wie sie überprüft werden können
+\end{itemize}
+
+
+\subsection{Programmcode}
+Die R-Befehle zur Erzeugung von Abbildung \ref{dichte} lauten
+
+\begin{verbatim}
+> x<-seq(-3,3,0.1)
+> plot(x,dnorm(x),type="l",ylab="Dichte der Standardnormalverteilung")
+\end{verbatim}
+
+\newpage %Eine neue Seite wird begonnen
+%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Einlesen von Grafiken im eps-Format (zwei Grafiken hintereinander!)
+
+% \begin{figure} \label{Plot}
+% \begin{center}
+% \includegraphics[width=14.6cm, height=6.8cm]{Test-Plot.eps}\\
+% \includegraphics[width=14.6cm, height=6.8cm]{Test-Plot.eps}
+% \caption{\it Residualplot und QQ-Plot}
+% \end{center}
+% \end{figure}
+%
+% \newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Statistische Auswertung}
+\begin{itemize}
+\item Gegebenenfalls Überprüfung der zu Grunde liegenden Annahmen
+\item Ausführliche Darstellung der Ergebnisse, aufbereitet mit Hilfe von Tabellen und
+Abbildungen
+\item Interpretation der Ergebnisse im Hinblick auf die Problemstellung
+\end{itemize}
+
+\subsection{Verweise}
+Auf Seite \pageref{dichte} finden wir Abbildung \ref{dichte}, welche die Dichte einer Standardnormalverteilung zeigt.
+% mit pageref wird die Seitenzahl aufgerufen, auf der wir die Abbildung finden.
+
+\subsection{Mathematische Formeln}
+
+Das arithmetische Mittel ist durch $\bar{x}=\frac{1}{n} \sum_{i=1}^n x_i$ gegeben.\\
+Die Stichprobenvarianz berechnet sich durch 
+\begin{align}
+\label{Varianz} 
+s^2(x) =\frac{1}{n-1}\sum_{i=1}^n (x_i - \bar{x})^2
+\end{align} 
+der mittleren quadratischen
+Abweichung vom arithmetschen Mittel.\\
+
+Seien $X_1,\ldots,X_n$
+Zufallsvariablen mit Erwartungswert $\mu$ und $\sigma^2$, so hat auch $\bar{X}$
+Erwartungswert $\mu$. Beweis:
+\begin{align*}
+E(\bar{X}) &= E \left( \frac{1}{n} \sum_{i=1}^n X_i \right) \\
+    &= \frac{1}{n} E \left( \sum_{i=1}^n X_i \right)  \\
+    &= \frac{1}{n} \sum_{i=1}^n E(X_i)  \\
+    &= \frac{1}{n} \sum_{i=1}^n \mu     \\
+    &= \frac{n}{n} \mu  =\mu
+\end{align*}
+
+Auch die Stichprobenvarianz gegeben in (\ref{Varianz}) erf�llt
+\[
+E(s^2(X))=\sigma^2.
+\]
+
+\subsection{Abbildungen}
+
+
+\begin{figure}[!ht] 
+\center{\includegraphics[width=\textwidth]{figures/Abbildung1.png} }  
+\caption{Kursverlauf von Bitcoin und MSCI ACWI.} 
+\label{Abb1} 
+\end{figure}
+
+
+\begin{figure}[!ht] 
+\center{\includegraphics[width=\textwidth]{figures/Abbildung2.png} }  
+\caption{Zeitreihenanalyse und saisonale quartalsweise Effekte auf Bitcoin-Renditen.} 
+\label{Abb2} 
+\end{figure}
+
+
+\begin{figure}[!ht] 
+\flushright{\includegraphics[height=0.9\textheight]{figures/Abbildung3.png} }  
+\caption{Quartalsweise Renditen, Volatilitaet und Sharpe Ratio von Bitcoin.} 
+\label{Abb3} 
+\end{figure}
+
+
+Mit LaTeX kann man auch h�bsche Tabellen erstellen. So eine ist in Tabelle \ref{Beispieltab} gegeben:
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[!ht]
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{l|r|r|r|r|r|r|}
+\textbf{}           & \multicolumn{2}{c|}{\textbf{Rendite}}                                                           & \multicolumn{2}{c|}{\textbf{Volatilitaet}}                                           & \multicolumn{2}{c|}{\textbf{Sharpe Ratio}}                                                      \\ \cline{2-7} 
+\textbf{}           & \multicolumn{1}{c|}{Bitcoin}            & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} MSCI ACWI}} & \multicolumn{1}{c|}{Bitcoin} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} MSCI ACWI}} & \multicolumn{1}{c|}{Bitcoin}            & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} MSCI ACWI}} \\ \hline
+\textbf{1. Quartal} & \cellcolor[HTML]{FFCCC9}-0.2378 $\pm$ 0.3045 & {\color[HTML]{C0C0C0} 0.0061 $\pm$ 0.0182}                 & 0.0511 $\pm$ 0.0126               & {\color[HTML]{C0C0C0} 0.0070 $\pm$ 0.0023}                 & \cellcolor[HTML]{FFCCC9}-0.0217 $\pm$ 0.0910 & {\color[HTML]{C0C0C0} 0.0184 $\pm$ 0.0376}                 \\ \hline
+\textbf{2. Quartal} & 0.2386 $\pm$ 0.5198                          & {\color[HTML]{C0C0C0} 0.0026 $\pm$ 0.0082}                 & 0.0362 $\pm$ 0.0085               & {\color[HTML]{C0C0C0} 0.0057 $\pm$ 0.0022}                 & 0.0861 $\pm$ 0.1366                          & {\color[HTML]{C0C0C0} 0.0090 $\pm$ 0.0200}                 \\ \hline
+\textbf{3. Quartal} & \cellcolor[HTML]{FFCCC9}-0.0300 $\pm$ 0.3264 & {\color[HTML]{C0C0C0} 0.0377 $\pm$ 0.0152}                 & 0.0283 $\pm$ 0.0086               & {\color[HTML]{C0C0C0} 0.0046 $\pm$ 0.0012}                 & \cellcolor[HTML]{FFCCC9}-0.0072 $\pm$ 0.1061 & {\color[HTML]{C0C0C0} 0.1272 $\pm$ 0.1056}                 \\ \hline
+\textbf{4. Quartal} & 0.7023 $\pm$ 0.7398                          & {\color[HTML]{C0C0C0} 0.0324 $\pm$ 0.0316}                 & 0.0337 $\pm$ 0.0129               & {\color[HTML]{C0C0C0} 0.0047 $\pm$ 0.0028}                 & 0.2232 $\pm$ 0.0542                          & {\color[HTML]{C0C0C0} 0.0976 $\pm$ 0.1008}                 \\ \hline
+\end{tabular}
+}\\
+\caption{Mediale quartalsweise Renditen, Volatilitaet und Sharpe-Ratio von Bitcoin und MSCI ACWI.}
+\label{Tab1}
+\end{table}
+
+
+
+
+\section{Zusammenfassung}
+\begin{itemize}
+\item Kurze Wiederholung der Fragestellung des Projekts
+\item Kurze Darstellung der wichtigsten Ergebnisse
+\item Diskussion der Ergebnisse (mögliche Schlussfolgerungen, Warnung vor Fehlinterpre-
+tationen usw.)
+\item Ausblick (offene Fragen, Hinweis auf mögliche weitere Untersuchungen usw.)
+\end{itemize}
+
+% \begin{align*}...\end{align*} f�r mathematische Umgebung. * Unterdr�ckt Numerierung der Formeln
+% \\ erzwingt einen Zeilenumbruch
+% & bewirkt, dass in die Zeichen danach in den Zeilen b�ndig stehen
+% \left und \right passen die gr��e des Zeichens (hier: "(" und ")" ) der gr��e der Zeichen dazwischen an
+
+\section*{Literaturverzeichnis} % ohne Nummer
+Schumacher, M. und Schulgen, G. (2008): Methodik klinischer Studien, 3. Auflage,
+Springer, Berlin.\\
+\\
+Byth, K., Cox, D. R. und Forder, P. (2006): Assessing the relationship between symptoms of allergic rhinoconjunctivitis and pollen counts, Australian and New Zealand Journal of Statistics 48(4), 417–428.\\
+\\
+Bei Web-Seiten muss das Datum der Abfrage mit angegeben werden.\\
+\\
+Alle im Literaturverzeichnis aufgeführten Arbeiten müssen im Text zitiert werden
+und umgekehrt.\\
+
+\appendix
+\newpage
+\section*{Anhang}
+\addcontentsline{toc}{section}{Anhang}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+
+\subsection{Erklärung zum Bericht}
+
+\subsection{Tabellen und Grafiken}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[h]
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{ll|r|r|r|r|}
+\textbf{}                                               &                                  & \textbf{Enddatum}               & \textbf{Endkurs (USD)}              & \textbf{Gewinn (USD)}              & \textbf{Rendite}              \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 07/12/17                        & 17899.70                      & 3633.60                      & 0.2547                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Tag}}}     & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 22/01/16} & {\color[HTML]{C0C0C0} 367.97} & {\color[HTML]{C0C0C0} 9.52}  & {\color[HTML]{C0C0C0} 0.0265} \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 10/12/17                        & 15455.40                      & 4140.00                      & 0.3658                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Woche}}}   & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 16/02/18} & {\color[HTML]{C0C0C0} 522.60} & {\color[HTML]{C0C0C0} 21.69} & {\color[HTML]{C0C0C0} 0.0433} \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 31/12/17                        & 14156.40                      & 3957.80                      & 0.3880                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Monat}}}   & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 30/10/15} & {\color[HTML]{C0C0C0} 411.24} & {\color[HTML]{C0C0C0} 29.59} & {\color[HTML]{C0C0C0} 0.0775} \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 31/12/17                        & 14156.40                      & 9815.35                      & 2.2610                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Quartal}}} & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 31/03/17} & {\color[HTML]{C0C0C0} 448.86} & {\color[HTML]{C0C0C0} 27.02} & {\color[HTML]{C0C0C0} 0.0640} \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 31/12/17                        & 14156.40                      & 13192.74                     & 13.690                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Jahr}}}    & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 29/12/17} & {\color[HTML]{C0C0C0} 513.02} & {\color[HTML]{C0C0C0} 91.18} & {\color[HTML]{C0C0C0} 0.2161} \\ \hline
+\end{tabular}
+}\\
+\caption{Maximale Gewinne von Bitcoin und MSCI ACWI.}
+\label{AnhangTab1}
+\end{table}
+
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[h]
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{ll|r|r|r|r|}
+\textbf{}                                               & \textbf{}                        & \textbf{Enddatum}               & \textbf{Endkurs (USD)}               & \textbf{Verlust (USD)}              & \textbf{Rendite}               \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 16/01/18                        & 11490.50                      & -2345.60                      & -0.1695                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Tag}}}     & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 24/06/16} & {\color[HTML]{C0C0C0} 388.26} & {\color[HTML]{C0C0C0} -19.42} & {\color[HTML]{C0C0C0} -0.0476} \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 24/12/17                        & 13925.80                      & -5180.60                      & -0.2711                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Woche}}}   & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 09/02/18} & {\color[HTML]{C0C0C0} 500.90} & {\color[HTML]{C0C0C0} -30.55} & {\color[HTML]{C0C0C0} -0.0574} \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 31/01/18                        & 10221.10                      & -3891.10                      & -0.2757                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Monat}}}   & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 31/08/15} & {\color[HTML]{C0C0C0} 396.73} & {\color[HTML]{C0C0C0} -30.04} & {\color[HTML]{C0C0C0} -0.0704} \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 31/03/18                        & 6973.53                       & -7138.67                      & -0.5058                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Quartal}}} & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 30/09/15} & {\color[HTML]{C0C0C0} 381.65} & {\color[HTML]{C0C0C0} -41.85} & {\color[HTML]{C0C0C0} -0.0988} \\ \hline
+\multicolumn{1}{l|}{}                                   & Bitcoin                          & 30/09/18                        & 6625.56                       & -7486.64                      & -0.5305                        \\ \cline{2-6} 
+\multicolumn{1}{l|}{\multirow{-2}{*}{\textbf{Jahr}}}    & {\color[HTML]{C0C0C0} MSCI ACWI} & {\color[HTML]{C0C0C0} 31/12/15} & {\color[HTML]{C0C0C0} 399.36} & {\color[HTML]{C0C0C0} -17.75} & {\color[HTML]{C0C0C0} -0.0425} \\ \hline
+\end{tabular}
+}\\
+\caption{Maximale Verluste von Bitcoin und MSCI ACWI.}
+\label{AnhangTab2}
+\end{table}
+
+
+% Please add the following required packages to your document preamble:
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[h]
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{l|r|r|r|r|r|r|}
+                   & \multicolumn{2}{c|}{\textbf{Rendite}}                                                                    & \multicolumn{2}{c|}{\textbf{Volatilitaet}}                                                             & \multicolumn{2}{c|}{\textbf{Sharpe Ratio}}                                                               \\ \cline{2-7} 
+                   & \multicolumn{1}{c|}{\textbf{Bitcoin}}   & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} \textbf{MSCI ACWI}}} & \multicolumn{1}{c|}{\textbf{Bitcoin}} & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} \textbf{MSCI ACWI}}} & \multicolumn{1}{c|}{\textbf{Bitcoin}}   & \multicolumn{1}{c|}{{\color[HTML]{C0C0C0} \textbf{MSCI ACWI}}} \\ \hline
+\textbf{Januar}    & \cellcolor[HTML]{FFCCC9}-0.1438 $\pm$ 0.2236 & \cellcolor[HTML]{FFCCC9}{\color[HTML]{C0C0C0} -0.0163 $\pm$ 0.0638} & 0.0515 $\pm$ 0.0136                        & {\color[HTML]{C0C0C0} 0.0057 $\pm$ 0.0029}                          & \cellcolor[HTML]{FFCCC9}-0.0947 $\pm$ 0.0551 & \cellcolor[HTML]{FFCCC9}{\color[HTML]{C0C0C0} -0.0896 $\pm$ 0.3333} \\ \hline
+\textbf{Februar}   & 0.1724 $\pm$ 0.0636                          & {\color[HTML]{C0C0C0} 0.0263 $\pm$ 0.0411}                          & 0.0384 $\pm$ 0.0262                        & {\color[HTML]{C0C0C0} 0.0061 $\pm$ 0.0051}                          & 0.1663 $\pm$ 0.1828                          & {\color[HTML]{C0C0C0} 0.3754 $\pm$ 0.2707}                          \\ \hline
+\textbf{Maerz}     & \cellcolor[HTML]{FFCCC9}-0.0917 $\pm$ 0.0773 & {\color[HTML]{C0C0C0} 0.0022 $\pm$ 0.0297}                          & 0.0439 $\pm$ 0.0140                        & {\color[HTML]{C0C0C0} 0.0075 $\pm$ 0.0012}                          & \cellcolor[HTML]{FFCCC9}-0.1077 $\pm$ 0.0873 & {\color[HTML]{C0C0C0} 0.0197 $\pm$ 0.1845}                          \\ \hline
+\textbf{April}     & 0.0757 $\pm$ 0.1613                          & {\color[HTML]{C0C0C0} 0.0128 $\pm$ 0.0075}                          & 0.0243 $\pm$ 0.0179                        & {\color[HTML]{C0C0C0} 0.0055 $\pm$ 0.0013}                          & 0.1677 $\pm$ 0.2161                          & {\color[HTML]{C0C0C0} 0.0989 $\pm$ 0.0627}                          \\ \hline
+\textbf{Mai}       & 0.0802 $\pm$ 0.3131                          & \cellcolor[HTML]{FFCCC9}{\color[HTML]{C0C0C0} -0.0018 $\pm$ 0.0034} & 0.0293 $\pm$ 0.0122                        & {\color[HTML]{C0C0C0} 0.0048 $\pm$ 0.0015}                          & 0.1080 $\pm$ 0.3007                          & \cellcolor[HTML]{FFCCC9}{\color[HTML]{C0C0C0} -0.0106 $\pm$ 0.0317} \\ \hline
+\textbf{Juni}      & 0.0549 $\pm$ 0.2141                          & \cellcolor[HTML]{FFCCC9}{\color[HTML]{C0C0C0} -0.0070 $\pm$ 0.0145} & 0.0339 $\pm$ 0.0096                        & {\color[HTML]{C0C0C0} 0.0057 $\pm$ 0.0026}                          & 0.0658 $\pm$ 0.2282                          & \cellcolor[HTML]{FFCCC9}{\color[HTML]{C0C0C0} -0.0174 $\pm$ 0.0728} \\ \hline
+\textbf{Juli}      & 0.0844 $\pm$ 0.1469                          & {\color[HTML]{C0C0C0} 0.0267 $\pm$ 0.0225}                          & 0.0289 $\pm$ 0.0148                        & {\color[HTML]{C0C0C0} 0.0048 $\pm$ 0.0007}                          & 0.0744 $\pm$ 0.1300                          & {\color[HTML]{C0C0C0} 0.2990 $\pm$ 0.1641}                          \\ \hline
+\textbf{August}    & \cellcolor[HTML]{FFCCC9}-0.0864 $\pm$ 0.1513 & {\color[HTML]{C0C0C0} 0.0017 $\pm$ 0.0062}                          & 0.0285 $\pm$ 0.0063                        & {\color[HTML]{C0C0C0} 0.0043 $\pm$ 0.0014}                          & \cellcolor[HTML]{FFCCC9}-0.1103 $\pm$ 0.1438 & {\color[HTML]{C0C0C0} 0.0194 $\pm$ 0.0458}                          \\ \hline
+\textbf{September} & \cellcolor[HTML]{FFCCC9}-0.0377 $\pm$ 0.0759 & {\color[HTML]{C0C0C0} 0.0026 $\pm$ 0.0224}                          & 0.0261 $\pm$ 0.0128                        & {\color[HTML]{C0C0C0} 0.0042 $\pm$ 0.0014}                          & \cellcolor[HTML]{FFCCC9}-0.0132 $\pm$ 0.0810 & {\color[HTML]{C0C0C0} 0.0304 $\pm$ 0.2574}                          \\ \hline
+\textbf{Oktober}   & 0.3312 $\pm$ 0.2698                          & {\color[HTML]{C0C0C0} 0.0131 $\pm$ 0.0280}                          & 0.0322 $\pm$ 0.0191                        & {\color[HTML]{C0C0C0} 0.0056 $\pm$ 0.0032}                          & 0.3330 $\pm$ 0.0699                          & {\color[HTML]{C0C0C0} 0.2383 $\pm$ 0.3251}                          \\ \hline
+\textbf{November}  & 0.1571 $\pm$ 0.0998                          & {\color[HTML]{C0C0C0} 0.0152 $\pm$ 0.0038}                          & 0.0420 $\pm$ 0.0072                        & {\color[HTML]{C0C0C0} 0.0041 $\pm$ 0.0014}                          & 0.1249 $\pm$ 0.0342                          & {\color[HTML]{C0C0C0} 0.1858 $\pm$ 0.0988}                          \\ \hline
+\textbf{Dezember}  & 0.1409 $\pm$ 0.3665                          & {\color[HTML]{C0C0C0} 0.0150 $\pm$ 0.0080}                          & 0.0330 $\pm$ 0.0208                        & {\color[HTML]{C0C0C0} 0.0053 $\pm$ 0.0031}                          & 0.1537 $\pm$ 0.3057                          & {\color[HTML]{C0C0C0} 0.1397 $\pm$ 0.1193}                          \\ \hline
+\end{tabular}
+}\\
+\caption{Mediale monatliche Renditen, Volatilitaet und Sharpe-Ratio von Bitcoin und MSCI ACWI.}
+\label{AnhangTab3}
+\end{table}
+
+
+\begin{figure}[h] 
+\center{\includegraphics[width=\textwidth]{figures/Anhang_Abbildung1.png}  }
+\caption{Zeitreihenanalyse und saisonale monatliche Effekte auf Bitcoin-Renditen.}
+\label{AnhangAbb1} 
+\end{figure}
+
+
+\begin{figure}[h] 
+\flushright{\includegraphics[height=0.95\textheight]{figures/Anhang_Abbildung2.png}  }
+\caption{Monatliche Renditen, Volatilitaet und Sharpe Ratio von Bitcoin.}
+\label{AnhangAbb2} 
+\end{figure}
+
+
+\end{document}
