@@ -30,6 +30,7 @@ data <- data.frame(RedCards = c(buli$HR, buli$AR),
 ```
 
 ```{r}
+## Teil 1
 # Daten fur deskriptive plots: teambasedData
 sums <- tapply(
     X = data$RedCards, 
@@ -77,7 +78,7 @@ teambasedData
 ### Unterscheidet sich die Anzahl an roten Karten zwischen Heim- und Auswärtssteams?
 barplot(t(table(data[,c(1,2)])), col=c("black","gray"), beside=TRUE,
         xlab="Anzahl roter Karten", ylab="Anzahl der Spiele")
-legend(x="topright", legend=c("in Heimspielen", "in Auswaertsspielen"), fill = c("black", "gray"))
+legend(x="topright", legend=c("Heimspiele", "Auswaertsspiele"), fill = c("black", "gray"))
 
 ```
 
@@ -104,6 +105,7 @@ legend(x="topright", legend=c("in Heimspielen", "in Auswaertsspielen"), fill = c
 ```
 
 ```{r}
-## Teil 2: Vergleich der Verteilungen
+## Teil 2 
+# Vergleich der Verteilungen
 
 ```
