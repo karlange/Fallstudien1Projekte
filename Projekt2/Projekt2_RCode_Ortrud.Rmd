@@ -1,0 +1,93 @@
+---
+title: "Projekt2"
+date: "20/10/2018"
+author: "Ortrud Wartlick"
+output: html_document
+---
+
+```{r}
+## Ziele
+
+# Deskriptive Fragen: 
+### Unterscheidet sich die Anzahl an roten Karten zwischen Heim- und Auswärtssteams?
+### Welche Teams neigen am häufigsten zu Platzverweisen? Gibt es Unterschiede bei den Teams zwischen Heim- und Auswärtsauftritten?
+### Hat sich die Anzahl an roten Karten über die verschiedenen Saisons verändert?
+
+# Aufgabe
+### Mit welcher Verteilung kann die Anzahl der Platzverweise pro Spiel für Heim- bzw. Aus- wärtsteams (HR und AR) geeignet modelliert werden? Diskutieren Sie, ob die zu treffenden Verteilungsannahmen gerechtfertigt werden können und vergleichen Sie die beiden angepassten Verteilungen.
+### Wie gut ist die Anpassung der entsprechenden Verteilungen bei den vorliegenden Daten?
+### (Vergleichen Sie dazu z.B. die beobachteten relativen Häufigkeiten mit den theoretischen Wahrscheinlichkeitsfunktionen der angepassten Verteilungen)
+### Überprüfen Sie mit einem geeigneten Testverfahren, ob sich die Anzahl an Platzverweisen zwischen Heim- und Auswärtsteams zu einem im Vorfeld gewählten Signifikanzniveau signifikant unterscheidet.
+```
+
+```{r}
+load('buli.Rdata')
+# Dataset for plotting
+data <- data.frame(RedCards = c(buli$HR, buli$AR), 
+                   HomeOrAway = as.factor(c(rep(0,length(buli$HR)), rep(1,length(buli$AR)))), 
+                   Team = as.factor(c(as.character(buli$HomeTeam), as.character(buli$AwayTeam))), 
+                   Saison = as.factor(c(buli$Saison,buli$Saison)),
+                   row.names = NULL)
+table(data[,c(1,2)])
+```
+
+```{r}
+barplot(t(table(data[,c(1,2)])), col=c("blue","red"), beside=TRUE,
+        xlab="Anzahl roter Karten", ylab="Anzahl der Spiele")
+```
+
+
+```{r}
+# Red Cards nach teams und nach HomOrAway unterscheiden:
+sums <- tapply(
+    X = data$RedCards, 
+    INDEX=list(Teams = data$Team,
+               HomeOrAway = data$HomeOrAway), 
+                                             FUN = sum)
+teambasedData <- data.frame(Team = row.names(sums),
+                        SumHome = sums[,1], 
+                        SumAway = sums[,2], 
+                        TotalSum = sums[,1]+sums[,1])
+
+meansPerGame <- tapply(
+    X = data$RedCards, 
+    INDEX=list(Teams = data$Team,
+               HomeOrAway = data$HomeOrAway), 
+                                             FUN = mean)
+teambasedData$MeanHome <- meansPerGame[,1]
+teambasedData$MeanAway <- meansPerGame[,2]
+teambasedData$TotalMean <- (meansPerGame[,1]+meansPerGame[,2])/2
+
+teambasedData$meanHomePerSeason <- rowMeans(tapply(
+    X = data$RedCards[data$HomeOrAway==0], 
+    INDEX=list(Teams = data$Team[data$HomeOrAway==0],
+               Season = data$Saison[data$HomeOrAway==0]), sum), na.rm=T)
+
+teambasedData$meanAwayPerSeason <- rowMeans(tapply(
+    X = data$RedCards[data$HomeOrAway==1], 
+    INDEX=list(Teams = data$Team[data$HomeOrAway==1],
+               Season = data$Saison[data$HomeOrAway==1]), sum), na.rm=T)
+
+teambasedData$meanTotalPerSeason <- rowMeans(tapply(
+    X = data$RedCards, 
+    INDEX=list(Teams = data$Team,
+               Season = data$Saison), sum), na.rm=T)
+
+teambasedData$numberOfSeasons <- tapply(
+    X = data$Saison, 
+    INDEX=list(Teams = data$Team), function(y) length(unique(y)))
+
+rownames(teambasedData) <- c()
+teambasedData
+```
+
+```{r}
+# Plot mean per season per team, home and away
+bardata <- teambasedData[order(teambasedData$meanTotalPerSeason, decreasing = T),
+                         c("Team","meanHomePerSeason","meanAwayPerSeason", "numberOfSeasons")]
+
+barplot(t(as.matrix(bardata[,c(2,3)])), names.arg = paste0(bardata$Team, " (", bardata$numberOfSeasons, ")"), las = 2, ylab="Anzahl roter Karten pro Saison", col = c("black", "gray"))
+legend(x="topright", legend=c("in Heimspielen", "in Auswaertsspielen"), fill = c("black", "gray"))
+```
+
+
