@@ -22,23 +22,15 @@ output: html_document
 
 ```{r}
 load('buli.Rdata')
-# Dataset for plotting
 data <- data.frame(RedCards = c(buli$HR, buli$AR), 
                    HomeOrAway = as.factor(c(rep(0,length(buli$HR)), rep(1,length(buli$AR)))), 
                    Team = as.factor(c(as.character(buli$HomeTeam), as.character(buli$AwayTeam))), 
                    Saison = as.factor(c(buli$Saison,buli$Saison)),
                    row.names = NULL)
-table(data[,c(1,2)])
 ```
 
 ```{r}
-barplot(t(table(data[,c(1,2)])), col=c("blue","red"), beside=TRUE,
-        xlab="Anzahl roter Karten", ylab="Anzahl der Spiele")
-```
-
-
-```{r}
-# Red Cards nach teams und nach HomOrAway unterscheiden:
+# Daten fur deskriptive plots: teambasedData
 sums <- tapply(
     X = data$RedCards, 
     INDEX=list(Teams = data$Team,
@@ -82,13 +74,36 @@ teambasedData
 ```
 
 ```{r}
+### Unterscheidet sich die Anzahl an roten Karten zwischen Heim- und Auswärtssteams?
+barplot(t(table(data[,c(1,2)])), col=c("black","gray"), beside=TRUE,
+        xlab="Anzahl roter Karten", ylab="Anzahl der Spiele")
+legend(x="topright", legend=c("in Heimspielen", "in Auswaertsspielen"), fill = c("black", "gray"))
+
+```
+
+```{r}
+### Welche Teams neigen am häufigsten zu Platzverweisen? Gibt es Unterschiede bei den Teams zwischen Heim- und Auswärtsauftritten?
+
 # Plot mean per season per team, home and away
 bardata <- teambasedData[order(teambasedData$meanTotalPerSeason, decreasing = T),
                          c("Team","meanHomePerSeason","meanAwayPerSeason", "numberOfSeasons")]
 
-par(mar=c(11,4,1,2))
-barplot(t(as.matrix(bardata[,c(2,3)])), names.arg = paste0(bardata$Team, " (", bardata$numberOfSeasons, ")"), las = 2, ylab="Anzahl roter Karten pro Saison", col = c("black", "gray"))
+par(mar=c(10,5,1,1))
+barplot(t(as.matrix(bardata[,c(2,3)])), names.arg = paste0(bardata$Team, " (", bardata$numberOfSeasons, ")"), las = 2, ylab="Anzahl roter Karten\n(Durchschnitt pro Saison)", col = c("black", "gray"))
 legend(x="topright", legend=c("in Heimspielen", "in Auswaertsspielen"), fill = c("black", "gray"))
 ```
 
+```{r}
+### Hat sich die Anzahl an roten Karten über die verschiedenen Saisons verändert?
+bardataSaison <- aggregate(data$RedCards, by=list(Saison = data$Saison, Home = data$HomeOrAway), sum)
+bardataSaisonMatrix <- as.matrix(t(cbind(bardataSaison$x[bardataSaison$Home==0],bardataSaison$x[bardataSaison$Home==1])))
+barplot(bardataSaisonMatrix, col=c("black","gray"),
+        names.arg = as.character(bardataSaison$Saison[bardataSaison$Home==0]),
+        ylab="Anzahl roter Karten", xlab="Saison")
+legend(x="topright", legend=c("in Heimspielen", "in Auswaertsspielen"), fill = c("black", "gray"))
+```
 
+```{r}
+## Teil 2: Vergleich der Verteilungen
+
+```
