@@ -86,6 +86,7 @@ teambasedData
 bardata <- teambasedData[order(teambasedData$meanTotalPerSeason, decreasing = T),
                          c("Team","meanHomePerSeason","meanAwayPerSeason", "numberOfSeasons")]
 
+par(mar=c(11,4,1,2))
 barplot(t(as.matrix(bardata[,c(2,3)])), names.arg = paste0(bardata$Team, " (", bardata$numberOfSeasons, ")"), las = 2, ylab="Anzahl roter Karten pro Saison", col = c("black", "gray"))
 legend(x="topright", legend=c("in Heimspielen", "in Auswaertsspielen"), fill = c("black", "gray"))
 ```
